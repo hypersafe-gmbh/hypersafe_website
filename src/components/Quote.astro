@@ -1,0 +1,34 @@
+---
+import Container from './Container.astro';
+
+const { author, role } = Astro.props;
+---
+
+<Container>
+  <div
+    class="flex-row items-center my-6 p-10 bg-stone text-white rounded-[45px]"
+  >
+    <div
+      class="justify-items-center relative w-full border border-lime rounded-3xl"
+    >
+      <div class="p-4 md:p-10">
+        <p
+          class="items-center justify-center text-white text-xl font-normal"
+        >
+          <slot />
+        </p>
+        {
+          (author || role) && (
+            <>
+              <span class="text-lime text-base md:text-xl font-medium mt-4">
+                {author}
+                <br />
+              </span>
+              <span class="text-white text-lg font-normal">{role}</span>
+            </>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Container>

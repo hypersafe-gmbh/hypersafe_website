@@ -1,0 +1,69 @@
+---
+import Container from '../components/Container.astro';
+import Quote from '../components/Quote.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="HyperSafe | About">
+  <main class="space-y-20">
+    <Container>
+      <div class="flex flex-col space-y-8">
+        <div>
+          <h1 class="text-5xl">What do you do?</h1>
+          <p class="text-2xl py-5 px-5">
+            <Quote>
+              HyperSafe helps its clients around the world to build a safer Web3
+              ecosystem.
+            </Quote>
+          </p>
+          <p class="text-xl">
+            <ul class="dashed text-xl space-y-1">
+              <li>
+                We help Web3 projects and companies in building more secure
+                software.
+              </li>
+              <li>
+                We advise and train people on how to build secure and robust
+                software.
+              </li>
+              <li>We help individuals in securing their Web3 journey.</li>
+              <li>
+                We develop security and developer tools that reshape Web3
+                security.
+              </li>
+              <li>
+                We conduct security research, develop open-source tools, and
+                contribute to the Web3 ecosystem to make it more secure.
+              </li>
+            </ul>
+          </p>
+        </div>
+        <div>
+          <h1 class="text-5xl">Who is behind?</h1>
+          <div class="mt-5 flex">
+            <div
+              class="rounded-[45px] shadow border border-black flex items-center space-x-2 px-10 py-6"
+            >
+              <img
+                class="rounded-full object-cover h-40 w-40"
+                src="./img/val.png"
+                alt="Valentin Quelquejay"
+              />
+              <div class="flex flex-col">
+                <p class="text-xl">Valentin Quelquejay</p>
+                <p class="text-md text-zinc-700">Founder</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h1 class="text-5xl">Where are you based?</h1>
+          <p class="text-xl pt-4">
+            <strong>HyperSafe GmbH</strong> is headquartered in the beautiful city
+            of <strong>Geneva in Switzerland 🇨🇭</strong>
+          </p>
+        </div>
+      </div>
+    </Container>
+  </main>
+</Layout>
