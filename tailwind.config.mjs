@@ -8,6 +8,10 @@ export default {
       gray: '#0D0C22',
       stone: '#231F20',
       lime: '#B9FF66',
+      ink: '#141414',
+      'card-light': '#f0f0ee',
+      muted: '#8a8a86',
+      page: '#fafaf8',
       zinc: {
         100: '#F3F3F3',
         200: '#F0F0F0',
