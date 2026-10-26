@@ -13,7 +13,7 @@ test('hero copy is verbatim', () => {
 test('hero buttons', () => {
   const hero = readPage().match(/<section[^>]*id="hero"[\s\S]*?<\/section>/)[0];
   assert.match(hero, /href="#services"[^>]*>[\s\S]*?Our services/);
-  assert.match(hero, /tally\.so[\s\S]*?Let's talk/);
+  assert.match(hero, /cal\.com\/vquelque\/15min[\s\S]*?Let's talk/);
 });
 
 test('eye tracking only runs with a hover pointer and motion allowed', () => {

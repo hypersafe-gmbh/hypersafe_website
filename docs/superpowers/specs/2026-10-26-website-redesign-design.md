@@ -21,7 +21,7 @@ The look should feel current and a bit more alive than today, while staying **so
 ## Non-goals
 
 - No blog, case studies, pricing, or multi-language support. The site is English only.
-- No new contact system. The existing Tally form stays.
+- Contact goes through a Cal.com booking page for a 15-minute intro call. It replaced the earlier Tally form.
 - No change of hosting or framework.
 
 ## Anti-goals (would count as failure even if it "works")
@@ -38,7 +38,7 @@ The look should feel current and a bit more alive than today, while staying **so
   - The logo is `public/logo.svg`: the eye icon plus the spaced "HYPERSAFE" wordmark. Use it as-is in the nav and footer.
   - The font is Space Grotesk, loaded from Google Fonts.
   - The colours are the existing tokens in `tailwind.config.mjs`: `lime #B9FF66`, `stone #231F20`, and the `zinc` scale, plus black and white. The mockup also uses an off-white page background, `#fafaf8`. Add it as a token.
-- **Contact:** every "Let's talk" call to action links to `https://tally.so/r/npL5jJ` in a new tab with `rel="noopener noreferrer"`.
+- **Contact:** every "Let's talk" call to action links to `https://cal.com/vquelque/15min` in a new tab with `rel="noopener noreferrer"`.
 - **Reduced motion:** all motion must be disabled under `prefers-reduced-motion: reduce`. That covers fade-ins, the logo scroll, eye tracking, blinking and hover lifts.
 - **Flowbite:** the current layout loads Flowbite from a CDN only for the nav toggle. Remove it and keep the existing small vanilla toggle script.
 
@@ -49,7 +49,7 @@ One page (`/`) with anchor sections. The current `/about` page is replaced by a 
 **Nav** (sticky, with a translucent page-coloured background and a thin bottom border):
 - logo on the left, linking to `/`
 - **Services** (`#services`)
-- a dark **Let's talk** button linking to the Tally form
+- a dark **Let's talk** button linking to the Cal.com booking page
 
 There is no "Clients" link; Val removed it. On mobile the nav collapses behind the existing hamburger toggle.
 
@@ -60,14 +60,14 @@ Sections, in order:
 3. **Services** (`#services`): two groups. **Security** has four cards and **Engineering** has two.
 4. **Specialties** (`#specialties`): two equal cards, Web3 security first, then AI security.
 5. **CTA** (`#cta`): a large dark rounded box with a lime button. It also carries the Geneva line and the founder, with the photo `public/img/val.png`. There is no separate About section.
-7. **Footer**: logo, plus "© {current year} HyperSafe GmbH · Geneva, Switzerland". The year is computed at build time, not by client-side script.
+7. **Footer**: logo, the email `info@hypersafe.xyz` as a mailto link, plus "© {current year} HyperSafe GmbH · Geneva, Switzerland". The year is computed at build time, not by client-side script.
 
 ## Decided: copy (final; use verbatim)
 
 **Hero**
 - H1: "We **break** your product before someone else does." Only "break" gets the lime highlight, a rounded `mark` box.
 - Intro paragraph: "**HyperSafe is a security consulting and engineering firm in Geneva.** We audit code and infrastructure, pentest apps, and help you fix what we find. Specialised in Web3 and AI security." The first sentence is bold and darker; the rest is regular grey.
-- Buttons: "Let's talk" (primary, dark, goes to Tally) and "Our services" (outlined, goes to `#services`).
+- Buttons: "Let's talk" (primary, dark, goes to Cal.com) and "Our services" (outlined, goes to `#services`).
 
 **Logo strip**
 - Label (small uppercase): "Clients & partners"
@@ -93,7 +93,7 @@ Sections, in order:
 - Small line above the title: "Headquartered in Geneva 🇨🇭"
 - Title: "Let's make things happen"
 - Founder line: small round photo, then "You'll talk to Valentin, our founder."
-- Button: "Heck yeah, let's talk →", going to Tally.
+- Button: "Heck yeah, let's talk →", going to Cal.com.
 
 **Meta**
 - Title: "HyperSafe: security consulting & engineering"

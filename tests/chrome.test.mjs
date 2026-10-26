@@ -11,8 +11,8 @@ test("nav has Services, Let's talk and no About or Clients", () => {
   assert.match(pageText(nav), /Let's talk/);
 });
 
-test('every tally link opens safely in a new tab', () => {
-  const anchors = readPage().match(/<a\b[^>]*tally\.so[^>]*>/g) || [];
+test('every booking link opens safely in a new tab', () => {
+  const anchors = readPage().match(/<a\b[^>]*cal\.com\/vquelque\/15min[^>]*>/g) || [];
   assert.ok(anchors.length >= 1);
   for (const a of anchors) {
     assert.match(a, /target="_blank"/);
@@ -25,4 +25,14 @@ test('footer has build-time year, no client year script', () => {
   const year = new Date().getFullYear();
   assert.ok(pageText(html).includes(`© ${year} HyperSafe GmbH · Geneva, Switzerland`));
   assert.ok(!html.includes('currentYear'));
+});
+
+test('footer has the contact email', () => {
+  const footer = readPage().match(/<footer[\s\S]*?<\/footer>/)[0];
+  assert.ok(footer.includes('href="mailto:info@hypersafe.xyz"'));
+  assert.ok(pageText(footer).includes('info@hypersafe.xyz'));
+});
+
+test('no tally links left', () => {
+  assert.ok(!readPage().includes('tally.so'));
 });

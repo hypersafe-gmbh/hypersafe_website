@@ -24,8 +24,8 @@ test('anchored sections clear the sticky nav', () => {
   assert.match(readBuiltCss(), /scroll-margin-top/);
 });
 
-test('nav, hero and cta each link to tally', () => {
-  assert.ok((readPage().match(/<a\b[^>]*tally\.so[^>]*>/g) || []).length >= 3);
+test('nav, hero and cta each link to the booking page', () => {
+  assert.ok((readPage().match(/<a\b[^>]*cal\.com\/vquelque\/15min[^>]*>/g) || []).length >= 3);
 });
 
 test('section order through to the end', () => {
