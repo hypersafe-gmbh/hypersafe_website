@@ -3,14 +3,18 @@ import Container from './Container.astro';
 import { TALLY_URL } from '../data/links';
 ---
 
-<section id="cta" class="pb-10">
+<section id="cta" class="pt-16 pb-10 md:pt-20">
   <Container>
     <div
-      class="flex flex-col items-start justify-between gap-6 rounded-[36px] bg-stone p-8 text-white md:flex-row md:items-center md:p-11"
+      class="flex flex-col items-start justify-between gap-6 rounded-[36px] bg-stone p-8 text-white md:flex-row md:items-end md:p-11"
     >
       <div>
+        <p class="mb-2 text-sm text-zinc-600">Headquartered in Geneva 🇨🇭</p>
         <h2 class="text-3xl font-medium tracking-[-0.03em] md:text-[2.125rem]">Let's make things happen</h2>
-        <p class="mt-1.5 text-zinc-600">Let us know how we can help.</p>
+        <div class="mt-5 flex items-center gap-3">
+          <img class="h-14 w-14 rounded-full object-cover" src="/img/val.png" alt="" />
+          <p class="text-zinc-600">You'll talk to <span class="text-white">Valentin</span>, our founder.</p>
+        </div>
       </div>
       <a
         href={TALLY_URL}

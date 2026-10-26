@@ -44,11 +44,11 @@ The look should feel current and a bit more alive than today, while staying **so
 
 ## Decided: structure
 
-One page (`/`) with anchor sections. The current `/about` page is replaced by a redirect to `/#about`. Use Astro's `redirects` config, which emits a meta-refresh page on static hosting. That's acceptable.
+One page (`/`) with anchor sections. The current `/about` page is replaced by a redirect to `/#cta`, which now holds the Geneva line and the founder. Use Astro's `redirects` config, which emits a meta-refresh page on static hosting. That's acceptable.
 
 **Nav** (sticky, with a translucent page-coloured background and a thin bottom border):
 - logo on the left, linking to `/`
-- **Services** (`#services`) and **About** (`#about`)
+- **Services** (`#services`)
 - a dark **Let's talk** button linking to the Tally form
 
 There is no "Clients" link; Val removed it. On mobile the nav collapses behind the existing hamburger toggle.
@@ -57,10 +57,9 @@ Sections, in order:
 
 1. **Hero**: text on the left; on the right, two large grey "eyes" that blink and whose pupils follow the cursor (see Motion).
 2. **Clients & partners**: a strip of official logos that scrolls slowly and endlessly.
-3. **Specialties** (`#specialties`): two equal cards, Web3 security first, then AI security.
-4. **Services** (`#services`): two groups. **Security** has four cards and **Engineering** has two.
-5. **About** (`#about`): short text, plus a founder card with the photo `public/img/val.png`.
-6. **CTA**: a large dark rounded box with a lime button.
+3. **Services** (`#services`): two groups. **Security** has four cards and **Engineering** has two.
+4. **Specialties** (`#specialties`): two equal cards, Web3 security first, then AI security.
+5. **CTA** (`#cta`): a large dark rounded box with a lime button. It also carries the Geneva line and the founder, with the photo `public/img/val.png`. There is no separate About section.
 7. **Footer**: logo, plus "© {current year} HyperSafe GmbH · Geneva, Switzerland". The year is computed at build time, not by client-side script.
 
 ## Decided: copy (final; use verbatim)
@@ -74,13 +73,11 @@ Sections, in order:
 - Label (small uppercase): "Clients & partners"
 
 **Specialties**
-- Label: "Specialties"
 - H2: "Deep expertise in Web3 and AI"
 - Card 1, light: badge "Web3 security"; text "Smart contracts, protocols and the systems around them."
 - Card 2, dark: badge "AI security"; text "Expertise in securing AI-native companies."
 
 **Services**
-- Label: "Services"
 - H2: "What we do"
 - Intro: "Security is the core of what we do. We also build software and infrastructure, secure by default."
 - Group **Security** (sub-label "our core"):
@@ -92,15 +89,10 @@ Sections, in order:
   - Software development: "We build software too, secure by default." (lime card)
   - Infrastructure & DevOps: "We set up and run infrastructure that doesn't fall over." (lime card)
 
-**About**
-- Label: "About"
-- H2: "Headquartered in Geneva 🇨🇭"
-- Text: "HyperSafe GmbH, Geneva. Founded by Valentin Quelquejay."
-- Founder card: photo, "Valentin Quelquejay", "Founder"
-
 **CTA**
+- Small line above the title: "Headquartered in Geneva 🇨🇭"
 - Title: "Let's make things happen"
-- Text: "Let us know how we can help."
+- Founder line: small round photo, then "You'll talk to Valentin, our founder."
 - Button: "Heck yeah, let's talk →", going to Tally.
 
 **Meta**
@@ -125,7 +117,6 @@ These are the details of "Direction C", chosen from three options:
 - **Layout on desktop:**
   - The services section is a two-column grid: the group name on the left, about 180px wide, and its cards on the right in two columns.
   - The specialties are two columns.
-  - About is two columns: text on the left, founder card on the right.
 - **Layout on mobile:** everything stacks into one column, and the eyes go below the hero text and are smaller.
 
 ## Decided: motion (all subtle; none under reduced-motion)
@@ -167,11 +158,11 @@ Microsoft and AWS are **excluded**. HyperSafe is not an enrolled partner, and bo
 
 ## Builder's calls already made (by Claude, during review; Val can override)
 
-- **Base path:** the site is served at the custom domain `www.hypersafe.xyz` with no base path, so root-relative paths (`/logo.svg`, `/clients/...`, `/#about`) are correct.
+- **Base path:** the site is served at the custom domain `www.hypersafe.xyz` with no base path, so root-relative paths (`/logo.svg`, `/clients/...`, `/#cta`) are correct.
 - **Colour tokens:** add `#141414` (ink), `#f0f0ee` (card-light), `#8a8a86` (muted) and `#fafaf8` (page) as Tailwind tokens alongside the existing ones.
 - **Logo data:** drive the logo strip from a single data list, so a logo can be removed by deleting one entry. The scrolling track duplicates the list enough times to loop without gaps.
 - **Reduced motion:** with reduced motion on, the logo strip becomes a static, centred, wrapping row.
-- **Mobile nav:** "Let's talk" stays visible next to the hamburger. Services and About collapse into the menu.
+- **Mobile nav:** "Let's talk" stays visible next to the hamburger. Services collapses into the menu.
 - **Sticky nav:** anchor sections get `scroll-margin-top` equal to the nav height, so the sticky nav doesn't cover their headings.
 
 ## Release gate

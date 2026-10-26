@@ -35,7 +35,7 @@ test('services: groups and six cards, verbatim, in order', () => {
 
 test('sections in spec order', () => {
   const html = readPage();
-  const ids = ['hero', 'clients', 'specialties', 'services'].map((id) => html.indexOf(`id="${id}"`));
+  const ids = ['hero', 'clients', 'services', 'specialties'].map((id) => html.indexOf(`id="${id}"`));
   assert.deepEqual([...ids].sort((a, b) => a - b), ids);
   assert.ok(ids.every((i) => i > 0));
 });

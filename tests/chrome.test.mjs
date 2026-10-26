@@ -2,10 +2,10 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readPage, pageText } from './helpers.mjs';
 
-test("nav has Services, About, Let's talk and no Clients", () => {
+test("nav has Services, Let's talk and no About or Clients", () => {
   const nav = readPage().match(/<nav[\s\S]*?<\/nav>/)[0];
   assert.ok(nav.includes('href="/#services"'));
-  assert.ok(nav.includes('href="/#about"'));
+  assert.ok(!nav.includes('href="/#about"'));
   assert.ok(nav.includes('src="/logo.svg"'));
   assert.ok(!/Clients/.test(pageText(nav)));
   assert.match(pageText(nav), /Let's talk/);
