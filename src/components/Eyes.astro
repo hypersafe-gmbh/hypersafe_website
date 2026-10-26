@@ -25,7 +25,6 @@
     height: 22px;
     border-radius: 50%;
     background: #141414;
-    transition: transform 0.12s;
   }
   @media (min-width: 768px) {
     .eyes {
@@ -47,18 +46,45 @@
     matchMedia('(hover: hover)').matches &&
     !matchMedia('(prefers-reduced-motion: reduce)').matches
   ) {
-    const pupils = document.querySelectorAll<HTMLElement>('.eyes .pupil');
+    const pupils = [...document.querySelectorAll<HTMLElement>('.eyes .pupil')];
+    const pos = pupils.map(() => ({ x: 0, y: 0, tx: 0, ty: 0 }));
+    let frame = 0;
+    let last = 0;
+
+    // Ease towards the target each frame instead of using a CSS transition:
+    // Safari jitters when a transform transition is restarted on every mousemove.
+    const step = (now: number) => {
+      const k = 1 - Math.exp(-(now - (last || now)) / 40);
+      last = now;
+      let moving = false;
+      pupils.forEach((pupil, i) => {
+        const p = pos[i];
+        p.x += (p.tx - p.x) * k;
+        p.y += (p.ty - p.y) * k;
+        if (Math.abs(p.tx - p.x) > 0.05 || Math.abs(p.ty - p.y) > 0.05) {
+          moving = true;
+        } else {
+          p.x = p.tx;
+          p.y = p.ty;
+        }
+        pupil.style.transform = `translate(${p.x}px, ${p.y}px)`;
+      });
+      frame = moving ? requestAnimationFrame(step) : 0;
+      if (!moving) last = 0;
+    };
 
     document.addEventListener('mousemove', (e) => {
-      pupils.forEach((pupil) => {
+      pupils.forEach((pupil, i) => {
         const eye = pupil.parentElement!.getBoundingClientRect();
         const cx = eye.left + eye.width / 2;
         const cy = eye.top + eye.height / 2;
         const maxOffset = eye.width / 2 - pupil.offsetWidth / 2 - 4;
         const angle = Math.atan2(e.clientY - cy, e.clientX - cx);
         const distance = Math.min(maxOffset, Math.hypot(e.clientX - cx, e.clientY - cy) / 8);
-        pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+        pos[i].tx = Math.cos(angle) * distance;
+        pos[i].ty = Math.sin(angle) * distance;
       });
+      if (!frame) frame = requestAnimationFrame(step);
     });
   }
 </script>
