@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
 /* custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
