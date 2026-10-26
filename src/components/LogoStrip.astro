@@ -46,7 +46,9 @@ import { clients } from '../data/clients';
   ul {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     gap: 64px;
+    min-width: 100vw;
     padding-right: 64px;
   }
   .logo {
@@ -82,6 +84,7 @@ import { clients } from '../data/clients';
     }
     ul {
       flex: 1;
+      min-width: 0;
       flex-wrap: wrap;
       justify-content: center;
       row-gap: 24px;
