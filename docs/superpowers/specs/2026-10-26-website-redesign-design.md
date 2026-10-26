@@ -180,4 +180,4 @@ Pushing to `main` deploys to production. The work therefore ends on a feature br
 
 ## Open items for Val
 
-- **Lak3:** confirm that "Lak3" is LAKE (lak3.io, a Geneva water/blockchain project). If you have a higher-resolution or SVG logo, send it over.
+- **Lak3:** resolved. Val confirmed on 2026-10-26 that the LAKE logo (lak3.io) is correct and fine to keep as the PNG.
