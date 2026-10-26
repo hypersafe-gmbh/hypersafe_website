@@ -1,0 +1,30 @@
+---
+import Container from './Container.astro';
+
+const specialties = [
+  { badge: 'Web3 security', text: 'Smart contracts, protocols and the systems around them.', dark: false },
+  { badge: 'AI security', text: 'Expertise in securing AI-native companies.', dark: true },
+];
+---
+
+<section id="specialties" class="pt-16 md:pt-20">
+  <Container>
+    <p class="mb-3 text-xs uppercase tracking-[0.14em] text-muted">Specialties</p>
+    <h2 class="mb-6 text-3xl font-medium tracking-[-0.035em] md:text-[2.5rem]">Deep expertise in Web3 and AI</h2>
+    <div class="grid gap-4 md:grid-cols-2">
+      {
+        specialties.map(({ badge, text, dark }) => (
+          <div
+            class:list={[
+              'card-lift min-h-[150px] rounded-[28px] border border-ink p-7 shadow-[0_4px_0_#141414]',
+              dark ? 'bg-stone text-white' : 'bg-white',
+            ]}
+          >
+            <span class="rounded-lg bg-lime px-2.5 py-1 text-lg font-medium text-ink">{badge}</span>
+            <p class="mt-5 text-base leading-relaxed opacity-80">{text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>
