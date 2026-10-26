@@ -1,53 +1,47 @@
 ---
-// Define your navigation links here
+import Container from './Container.astro';
+import { TALLY_URL } from '../data/links';
+
 const navLinks = [
   { href: '/#services', label: 'Services' },
-  { href: '/about', label: 'About' },
+  { href: '/#about', label: 'About' },
 ];
-
-import Container from './Container.astro';
 ---
 
-<nav class="w-full top-0 left-0 z-50 fixed bg-white">
+<nav class="sticky top-0 z-50 w-full border-b border-zinc-200 bg-page/90 backdrop-blur">
   <Container>
-    <div class="flex flex-wrap items-center justify-between mx-auto py-3">
-      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="/logo.svg" class="h-8" alt="HyperSafe Logo" />
+    <div class="flex flex-wrap items-center justify-between py-4">
+      <a href="/" class="flex items-center">
+        <img src="/logo.svg" class="h-7" alt="HyperSafe" />
       </a>
-      <button
-        data-collapse-toggle="navbar-default"
-        type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden focus:outline-none focus:ring-2"
-        aria-controls="navbar-default"
-        aria-expanded="false"
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 17 14"
+      <div class="flex items-center gap-2 md:order-2">
+        <a
+          href={TALLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-xl bg-ink px-4 py-2 text-sm text-white hover:bg-stone"
         >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 1h15M1 7h15M1 13h15"></path>
-        </svg>
-      </button>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <ul
-          class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
+          Let's talk
+        </a>
+        <button
+          data-collapse-toggle="navbar-default"
+          type="button"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm focus:outline-none focus:ring-2 md:hidden"
+          aria-controls="navbar-default"
+          aria-expanded="false"
         >
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="hidden w-full md:order-1 md:ml-auto md:mr-8 md:block md:w-auto" id="navbar-default">
+        <ul class="mt-4 flex flex-col gap-1 text-sm md:mt-0 md:flex-row md:gap-8">
           {
             navLinks.map((link) => (
               <li>
-                <a
-                  href={link.href}
-                  class="block py-2 px-3 text-black rounded md:bg-transparent md:p-0"
-                >
+                <a href={link.href} class="block py-2 hover:text-muted md:py-0">
                   {link.label}
                 </a>
               </li>
@@ -60,33 +54,19 @@ import Container from './Container.astro';
 </nav>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementById('navbar-default');
+  const navbar = document.getElementById('navbar-default');
+  const toggleButton = document.querySelector('[data-collapse-toggle="navbar-default"]');
 
-    // Check if navbar exists before adding event listeners
-    if (navbar) {
-      const toggleButton = document.querySelector(
-        '[data-collapse-toggle="navbar-default"]'
-      );
-      const navLinks = navbar.querySelectorAll('a');
-
-      if (toggleButton) {
-        toggleButton.addEventListener('click', () =>
-          navbar.classList.toggle('hidden')
-        );
-      } else {
-        console.warn(
-          'Navbar toggle button not found. Toggle functionality might be affected.'
-        );
-      }
-
-      navLinks.forEach((link) =>
-        link.addEventListener('click', () => navbar.classList.add('hidden'))
-      );
-    } else {
-      console.warn(
-        "Navbar element with ID 'navbar-default' not found. Navigation functionality might be affected."
-      );
-    }
-  });
+  if (navbar && toggleButton) {
+    toggleButton.addEventListener('click', () => {
+      const open = navbar.classList.toggle('hidden') === false;
+      toggleButton.setAttribute('aria-expanded', String(open));
+    });
+    navbar.querySelectorAll('a').forEach((link) =>
+      link.addEventListener('click', () => {
+        navbar.classList.add('hidden');
+        toggleButton.setAttribute('aria-expanded', 'false');
+      })
+    );
+  }
 </script>

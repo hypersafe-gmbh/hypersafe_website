@@ -1,24 +1,14 @@
 ---
-import Container from "./Container.astro"
----
-<footer class="bg-fixed bg-bottom text-black">
-    <Container>
-    <div class="py-6">
-        <div class="flex flex-col items-center justify-between md:flex-row">
-            <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img class="h-8" src="/logo.svg" alt="HyperSafe Logo">
-            </div>
-            <div class="flex mt-4 md:m-0">
-                <div class="-mx-4">
-                    @ <span id="currentYear"></span> HyperSafe</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </Container>
-</footer>
+import Container from './Container.astro';
 
-<script is:inline>
-    const year = new Date().getFullYear();
-    document.getElementById("currentYear").innerHTML = `${year}`;
-</script>
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-10 border-t border-zinc-200">
+  <Container>
+    <div class="flex flex-col items-center justify-between gap-3 py-6 text-sm text-zinc-700 md:flex-row">
+      <img class="h-5" src="/logo.svg" alt="HyperSafe" />
+      <span>© {year} HyperSafe GmbH · Geneva, Switzerland</span>
+    </div>
+  </Container>
+</footer>
