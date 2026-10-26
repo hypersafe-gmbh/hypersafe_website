@@ -1,0 +1,91 @@
+---
+import Container from './Container.astro';
+import { clients } from '../data/clients';
+---
+
+<section id="clients" class="border-y border-zinc-200 py-6">
+  <Container>
+    <p class="mb-4 text-xs uppercase tracking-[0.14em] text-muted">Clients &amp; partners</p>
+  </Container>
+  <div class="marquee">
+    <div class="marquee-track">
+      {
+        [0, 1].map((copy) => (
+          <ul data-logos={copy === 0 ? '' : undefined} aria-hidden={copy === 1 ? 'true' : undefined}>
+            {clients.map((client) => (
+              <li class:list={['logo', { icon: client.filter === 'icon' }]}>
+                <img
+                  src={client.src}
+                  alt={copy === 1 || client.label ? '' : client.name}
+                  style={`height:${client.height}px`}
+                  loading="lazy"
+                />
+                {client.label && <span>{client.label}</span>}
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    padding-right: 64px;
+  }
+  .logo {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 8px;
+    font-size: 19px;
+    font-weight: 600;
+    color: #00000070;
+  }
+  .logo img {
+    display: block;
+    width: auto;
+    filter: brightness(0) opacity(0.42);
+    transition: filter 0.3s;
+  }
+  .logo.icon img {
+    filter: grayscale(1) opacity(0.45);
+  }
+  .logo:hover img {
+    filter: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      mask-image: none;
+    }
+    .marquee-track {
+      width: auto;
+    }
+    ul[aria-hidden='true'] {
+      display: none;
+    }
+    ul {
+      flex: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 24px;
+      padding: 0 24px;
+    }
+  }
+</style>
