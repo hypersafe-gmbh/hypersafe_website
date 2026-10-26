@@ -18,7 +18,6 @@ import { clients } from '../data/clients';
                   src={client.src}
                   alt={copy === 1 || client.label ? '' : client.name}
                   style={`height:${client.height}px`}
-                  loading="lazy"
                 />
                 {client.label && <span>{client.label}</span>}
               </li>
@@ -40,8 +39,13 @@ import { clients } from '../data/clients';
     width: max-content;
     animation: marquee 30s linear infinite;
   }
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
+  @media (hover: hover) {
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+    .logo:hover img {
+      filter: none;
+    }
   }
   ul {
     display: flex;
@@ -68,9 +72,6 @@ import { clients } from '../data/clients';
   }
   .logo.icon img {
     filter: grayscale(1) opacity(0.45);
-  }
-  .logo:hover img {
-    filter: none;
   }
   @media (prefers-reduced-motion: reduce) {
     .marquee {

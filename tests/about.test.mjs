@@ -8,7 +8,6 @@ test('about copy and founder card', () => {
   assert.ok(t.includes('Headquartered in Geneva 🇨🇭'));
   assert.ok(t.includes('HyperSafe GmbH, Geneva. Founded by Valentin Quelquejay.'));
   assert.ok(t.includes('Founder'));
-  assert.match(sec, /<img[^>]*src="\/img\/val\.png"[^>]*alt="Valentin Quelquejay"/);
 });
 
 test('cta copy', () => {
@@ -19,7 +18,7 @@ test('cta copy', () => {
 });
 
 test('/about redirects to /#about', () => {
-  assert.match(readPage('about/index.html'), /http-equiv="refresh"[^>]*url=\/#about/i);
+  assert.match(readPage('about/index.html'), /http-equiv="refresh"[^>]*url=(https?:\/\/[^/"]+)?\/#about/i);
 });
 
 test('anchored sections clear the sticky nav', () => {

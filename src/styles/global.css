@@ -69,9 +69,11 @@ section[id] {
     transform 0.25s,
     box-shadow 0.25s;
 }
-.card-lift:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 0 #141414;
+@media (hover: hover) {
+  .card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 #141414;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

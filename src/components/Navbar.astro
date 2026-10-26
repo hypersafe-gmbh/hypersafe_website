@@ -30,7 +30,7 @@ const navLinks = [
           aria-controls="navbar-default"
           aria-expanded="false"
         >
-          <span class="sr-only">Open main menu</span>
+          <span class="sr-only" data-menu-label>Open main menu</span>
           <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path>
           </svg>
@@ -57,16 +57,16 @@ const navLinks = [
   const navbar = document.getElementById('navbar-default');
   const toggleButton = document.querySelector('[data-collapse-toggle="navbar-default"]');
 
+  const label = toggleButton?.querySelector('[data-menu-label]');
+
+  const setOpen = (open: boolean) => {
+    navbar?.classList.toggle('hidden', !open);
+    toggleButton?.setAttribute('aria-expanded', String(open));
+    if (label) label.textContent = open ? 'Close main menu' : 'Open main menu';
+  };
+
   if (navbar && toggleButton) {
-    toggleButton.addEventListener('click', () => {
-      const open = navbar.classList.toggle('hidden') === false;
-      toggleButton.setAttribute('aria-expanded', String(open));
-    });
-    navbar.querySelectorAll('a').forEach((link) =>
-      link.addEventListener('click', () => {
-        navbar.classList.add('hidden');
-        toggleButton.setAttribute('aria-expanded', 'false');
-      })
-    );
+    toggleButton.addEventListener('click', () => setOpen(navbar.classList.contains('hidden')));
+    navbar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
   }
 </script>
